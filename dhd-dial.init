@@ -4,7 +4,7 @@
 # description: myapp daemon
 # processname: myapp
 
-DAEMON_PATH="/usr/bin/dhd"
+DAEMON_PATH="/usr/bin"
 
 DAEMON=dhd
 DAEMONOPTS="dial `cat /etc/dhd/server`"

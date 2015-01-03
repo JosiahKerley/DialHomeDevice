@@ -4,6 +4,7 @@ CWD=$PWD
 cd $DIR
 mkdir -p /etc/dhd
 echo 22 > /etc/dhd/port
+echo 30 > /etc/dhd/maxage
 cat dhd.sh > /usr/bin/dhd
 chmod +x /usr/bin/dhd
 cd $CWD

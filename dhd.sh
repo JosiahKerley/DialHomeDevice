@@ -11,7 +11,7 @@ then
   echo $port
 elif [ "$1" == "list" ]
 then
-  rm -f /var/run/dhd/sessions/* > /dev/null 2>&1
+  find /var/run/dhd/sessions/ -type f -not -newermt "-`cat /etc/dhd/maxage` seconds" -delete > /dev/null 2>&1
   echo ""
   echo "Waiting for hosts..."
   sleep 2
@@ -38,7 +38,7 @@ then
   else
     reverseport=`ssh $2 dhd port`
     sleep 1
-    ssh -R $reverseport:localhost:22 $2 dhd heartbeat $reverseport `hostname`
+    ssh -R $reverseport:localhost:`cat /etc/dhd/port` $2 dhd heartbeat $reverseport `hostname`
   fi
 elif [ "$1" == "heartbeat" ]
 then

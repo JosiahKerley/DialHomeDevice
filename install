@@ -1,0 +1,9 @@
+#!/bin/bash
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+CWD=$PWD
+cd $DIR
+mkdir -p /etc/dhd
+echo 22 > /etc/dhd/port
+cat dhd.sh > /usr/bin/dhd
+chmod +x /usr/bin/dhd
+cd $CWD

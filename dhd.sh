@@ -65,7 +65,7 @@ Usage:
     List current sessions-
       dhd list
 
-	List current sessions-
+    List current sessions-
       dhd connect <session name>
 
 

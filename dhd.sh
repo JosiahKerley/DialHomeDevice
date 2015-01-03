@@ -53,7 +53,7 @@ then
     do
       echo "Connected as $2 with port $3"
       echo $2 > "$dir/$3"
-      sleep 10
+      sleep 1
     done
   fi
 else

@@ -64,7 +64,10 @@ Usage:
   Server side:
     List current sessions-
       dhd list
-	  dhd connect <session name>
+
+	List current sessions-
+      dhd connect <session name>
+
 
   Client side:
     List current sessions-

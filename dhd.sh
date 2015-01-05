@@ -6,6 +6,20 @@ mkdir -p $sessions > /dev/null 2>&1
 mkdir -p $outbox > /dev/null 2>&1
 mkdir -p $inbox > /dev/null 2>&1
 
+session2hostname()
+{
+  id=$1  
+  if ! [[ "$id" =~ ^[0-9]+$ ]]
+  then
+    n=`ls "$sessions" | head -$id | tail -1`
+    id=$n
+  fi
+  if [ -f "$sessions/$id" ]
+  then
+    echo `cat "$sessions/$id"`
+  fi
+}
+
 if [ "$1" == "port" ]
 then
   free=0
@@ -31,7 +45,7 @@ then
   else
     if [ -f "/var/run/dhd/sessions/$2" ]
     then
-      ssh localhost -p `cat /var/run/dhd/sessions/$2` $3 $4 $5 $6 $7 $8 $9
+      ssh localhost -p `session2hostname $2` $3 $4 $5 $6 $7 $8 $9
     fi
     rm -f "/var/run/dhd/sessions/$2"
   fi

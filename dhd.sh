@@ -46,6 +46,7 @@ then
   then
     echo "Format: dhd exec clientsessionname"
   else
+    echo "exec:"
     echo `session2hostname $2`
     if [ -f "/var/run/dhd/sessions/$2" ]
     then

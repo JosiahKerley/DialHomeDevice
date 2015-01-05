@@ -11,11 +11,12 @@ session2hostname()
   id=$1  
   if [[ "$id" =~ ^[0-9]+$ ]]
   then
-    echo "is num"
-    echo `ls -1 "$sessions" `
-    echo `ls -1 "$sessions" | head -$id`
-    echo `ls -1 "$sessions" | head -$id | tail -1`
+    #echo "is num"
+    #echo `ls -1 "$sessions" `
+    #echo `ls -1 "$sessions" | head -$id`
+    #echo `ls -1 "$sessions" | head -$id | tail -1`
     n=`ls -1 "$sessions" | head -$id | tail -1`
+    echo $n
     id=$n
   fi
   if [ -f "$sessions/$id" ]

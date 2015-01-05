@@ -12,6 +12,7 @@ session2hostname()
   if [[ "$id" =~ ^[0-9]+$ ]]
   then
     n=`ls -1 "$sessions" | head -$id | tail -1`
+    echo $n
     id=$n
   fi
   if [ -f "$sessions/$id" ]
@@ -42,9 +43,9 @@ then
   then
     echo "Format: dhd exec clientsessionname"
   else
-    echo "exec:"
-    echo `session2hostname $2`
-    echo "exec^"
+    #echo "exec:"
+    #echo `session2hostname $2`
+    #echo "exec^"
     if [ -f "/var/run/dhd/sessions/$2" ]
     then
       ssh localhost -p `session2hostname $2` $3 $4 $5 $6 $7 $8 $9

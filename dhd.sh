@@ -9,7 +9,7 @@ mkdir -p $inbox > /dev/null 2>&1
 session2hostname()
 {
   id=$1  
-  if ! [[ "$id" =~ ^[0-9]+$ ]]
+  if [[ "$id" =~ ^[0-9]+$ ]]
   then
     echo "is num"
     echo `ls "$sessions" `
@@ -47,6 +47,7 @@ then
     echo "Format: dhd exec clientsessionname"
   else
     echo "exec:"
+    echo session2hostname $2
     echo `session2hostname $2`
     if [ -f "/var/run/dhd/sessions/$2" ]
     then

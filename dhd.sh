@@ -13,6 +13,7 @@ session2hostname()
   then
     n=`ls -1 "$sessions" | head -$id | tail -1`
     echo `ls -1 "$sessions" | head -$(( $id )) | tail -1`
+    echo ls -1 "$sessions" | head -$(( $id )) | tail -1
     echo $n
     id=$n
   fi

@@ -12,9 +12,8 @@ session2hostname()
   if [[ "$id" =~ ^[0-9]+$ ]]
   then
     n=`ls -1 "$sessions" | head -$id | tail -1`
-    echo `ls -1 "$sessions" | head -$(( $id )) | tail -1`
 	echo "top"
-    echo ls -1 "$sessions" | head -$(( $id )) | tail -1
+    echo `ls -1 "$sessions" | head -$(( $id )) | tail -1`
 	echo "bottom"
     id=$n
   fi

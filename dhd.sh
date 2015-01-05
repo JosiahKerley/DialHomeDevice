@@ -1,7 +1,7 @@
 #!/bin/bash
 sessions="/var/run/dhd/sessions"
 outbox="/var/run/dhd/outbox"
-inbox"/var/run/dhd/inbox"
+inbox="/var/run/dhd/inbox"
 mkdir -p $sessions > /dev/null 2>&1
 mkdir -p $outbox > /dev/null 2>&1
 mkdir -p $inbox > /dev/null 2>&1

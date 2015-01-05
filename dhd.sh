@@ -42,7 +42,7 @@ then
   then
     echo "Format: dhd exec clientsessionname"
   else
-    echo session2hostname $2
+    echo `session2hostname $2`
     if [ -f "/var/run/dhd/sessions/$2" ]
     then
       ssh localhost -p `session2hostname $2` $3 $4 $5 $6 $7 $8 $9

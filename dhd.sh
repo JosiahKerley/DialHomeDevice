@@ -1,4 +1,11 @@
 #!/bin/bash
+sessions="/var/run/dhd/sessions"
+outbox="/var/run/dhd/outbox"
+inbox"/var/run/dhd/inbox"
+mkdir -p $sessions > /dev/null 2>&1
+mkdir -p $outbox > /dev/null 2>&1
+mkdir -p $inbox > /dev/null 2>&1
+
 if [ "$1" == "port" ]
 then
   free=0
@@ -13,20 +20,18 @@ elif [ "$1" == "list" ]
 then
   find /var/run/dhd/sessions/ -type f -not -newermt "-`cat /etc/dhd/maxage` seconds" -delete > /dev/null 2>&1
   echo ""
-  echo "Waiting for hosts..."
-  sleep 2
   echo ""
   ls "/var/run/dhd/sessions" | nl
   echo ""
-elif [ "$1" == "connect" ]
+elif [ "$1" == "exec" ]
 then
   if [ "$2" == "" ]
   then
-    echo "Format: dhd connect clientsessionname"
+    echo "Format: dhd exec clientsessionname"
   else
     if [ -f "/var/run/dhd/sessions/$2" ]
     then
-      ssh localhost -p `cat /var/run/dhd/sessions/$2`
+      ssh localhost -p `cat /var/run/dhd/sessions/$2` $3 $4 $5 $6 $7 $8 $9
     fi
     rm -f "/var/run/dhd/sessions/$2"
   fi
@@ -34,7 +39,7 @@ elif [ "$1" == "dial" ]
 then
   if [ "$2" == "" ]
   then
-    echo "Format: dhd connect servernameorip"
+    echo "Format: dhd exec servernameorip"
   else
     reverseport=`ssh $2 dhd port`
     sleep 1
@@ -47,12 +52,10 @@ then
     echo "Format:  dhd heartbeat reverseport clienthostnameorip"
   else
     echo "Connected to `hostname`"
-    dir=/var/run/dhd/sessions
-    mkdir -p "$dir" > /dev/null 2>&1
     while [ 1 == 1 ]
     do
-      echo "Connected as $2 with port $3"
-      echo $2 > "$dir/$3"
+      echo "Connected as $3 with port $2 '`date`'"
+      echo $2 > "$sessions/$3"
       sleep 1
     done
   fi
@@ -66,7 +69,7 @@ Usage:
       dhd list
 
     List current sessions-
-      dhd connect <session name>
+      dhd exec <session name>
 
 
   Client side:

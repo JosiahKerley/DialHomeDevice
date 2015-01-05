@@ -3,9 +3,9 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 CWD=$PWD
 cd $DIR
 mkdir -p /etc/dhd
-echo 22 > /etc/dhd/port
-echo 30 > /etc/dhd/maxage
-echo localhost > /etc/dhd/server
+if [ -f /etc/dhd/port ] ; then echo 22 > /etc/dhd/port ; fi
+if [ -f /etc/dhd/maxage ] ; then echo 30 > /etc/dhd/maxage ; fi
+if [ -f /etc/dhd/server ] ; then echo localhost > /etc/dhd/server ; fi
 cat dhd.sh > /usr/bin/dhd
 cat dhd-dial.init > /etc/init.d/dhd-dial
 chmod +x /usr/bin/dhd

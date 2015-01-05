@@ -1,8 +1,8 @@
 #!/bin/bash
 # dhd-client daemon
 # chkconfig: 345 20 80
-# description: myapp daemon
-# processname: myapp
+# description: dhd-client daemon
+# processname: dhd-client
 
 DAEMON_PATH="/usr/bin"
 

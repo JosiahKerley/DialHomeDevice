@@ -34,7 +34,6 @@ elif [ "$1" == "list" ]
 then
   find /var/run/dhd/sessions/ -type f -not -newermt "-`cat /etc/dhd/maxage` seconds" -delete > /dev/null 2>&1
   echo ""
-  echo ""
   ls "/var/run/dhd/sessions" | nl
   echo ""
 elif [ "$1" == "exec" ]
@@ -45,6 +44,7 @@ then
   else
     if [ -f "/var/run/dhd/sessions/$2" ]
     then
+      echo ssh localhost -p `session2hostname $2` $3 $4 $5 $6 $7 $8 $9
       ssh localhost -p `session2hostname $2` $3 $4 $5 $6 $7 $8 $9
     fi
     rm -f "/var/run/dhd/sessions/$2"
@@ -53,7 +53,7 @@ elif [ "$1" == "dial" ]
 then
   if [ "$2" == "" ]
   then
-    echo "Format: dhd exec servernameorip"
+    echo "Format: dhd dial servernameorip"
   else
     reverseport=`ssh $2 dhd port`
     sleep 1
